@@ -1,0 +1,29 @@
+
+subprojects {
+  apply plugin: "java"
+  apply plugin: "idea"
+
+  repositories {
+    jcenter()
+    mavenCentral()
+  }
+}
+
+project(":project1") {
+  dependencies {
+    compile "log4j:log4j:1.2.14"
+  }
+}
+
+project(":project2") {
+  dependencies {
+    compile "log4j:log4j:1.2.17"
+  }
+}
+
+project(":project-tests") {
+  dependencies {
+    compile project(':project1'), project(':project2')
+    compile 'junit:junit:4.11'
+  }
+}
